@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.icon {
+	margin: 25px;
+	cursor: pointer;
+}
+
+.empty {
+	display: block;
+	text-align: center;
+}
+
+.modalWr {
+	width: 310px;
+	height: 33px;
+	background: rgb(252, 240, 204);
+	border-radius: 25px;
+	display: flex;
+	justify-content: space-evenly;
+	position: absolute;
+	box-shadow:
+	  4.3px 5.6px 4.8px rgba(0, 0, 0, 0.047),
+	  9.9px 13px 11.2px rgba(0, 0, 0, 0.065),
+	  17.8px 23.4px 20px rgba(0, 0, 0, 0.076),
+	  29.5px 38.9px 33.2px rgba(0, 0, 0, 0.085),
+	  48.7px 64px 54.8px rgba(0, 0, 0, 0.094),
+	  85.1px 111.9px 95.7px rgba(0, 0, 0, 0.107),
+	  184px 242px 207px rgba(0, 0, 0, 0.14)
+	;
+
+	.input {
+		border-radius: 25px;
+		outline: none;
+		border: none;
+		padding: 3px 15px;
+		margin: 5px;
+		position: relative;
+	}
+
+	.btn {
+		display: block;
+		padding: 5px 25px;
+		border-radius: 25px;
+		border: 1px solid rgb(201, 190, 157);
+		cursor: pointer;
+		transition: .1s;
+
+		&:hover {
+			background: rgb(201, 190, 157);
+		}
+	}
+}

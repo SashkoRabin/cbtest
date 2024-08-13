@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { Provider } from 'react-redux';
+import store from './store/store';
+import AppView from './AppView';
+import './styles/App.scss';
+
 
 function App() {
+  const [cityArr, setCityArr] = useState<string>('');
+  const [cities, setCities] = useState<Array<string>>([]);
+
+  useEffect(() => {
+    const storage = localStorage.getItem('City') as string || ''
+    if (cityArr.length === 0 && storage.length > 0) {
+      setCityArr(storage);
+      setCities(storage.split(',') as Array<string> || [])
+    }
+  }, []);
+
+
+  console.log(cities.length)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <AppView cities={cities} />
+    </Provider>
   );
 }
 
