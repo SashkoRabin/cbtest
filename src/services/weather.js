@@ -8,7 +8,10 @@ export const weatherApi = createApi({
     addCountry: builder.query({
       query: (name) => `/geo/1.0/direct?q=${name}&limit=1&appid=${API_KEY}`,
     }),
+    getInfoByCord: builder.query({
+      query: ({ lat, lon }: { lat: number, lon: number }) => `/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+    })
   }),
 })
 
-export const { useAddCountryQuery } = weatherApi;
+export const { useAddCountryQuery, useGetInfoByCordQuery } = weatherApi;

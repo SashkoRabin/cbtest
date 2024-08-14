@@ -1,24 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 import styles from '../styles/AddBtn.module.scss';
+import ICity from '../interfaces/city';
+import { FULFILLED } from '../constants/general';
 import { addCity } from '../store/citySlice';
 import { useAddCountryQuery } from '../services/weather';
 
-function AddBtnModal ({ toggleModal }: { toggleModal: () => void}) {
+
+interface IAddBtnModal {
+  toggleModal: () => void;
+  cities: ICity[];
+  setCities: (value: ICity[]) => void;
+};
+
+function AddBtnModal ({ toggleModal, cities, setCities }: IAddBtnModal) {
   const [city, setCity] = useState<string>('');
   const [query, setQuery] = useState<string>('');
   const data = useAddCountryQuery(query);
   const dispatch = useDispatch();
   
-  console.log(data)
   const addHandler = () => {
     if (city.length > 0) {
       setQuery(city);
-    }
-  }
+    };
+  };
 
   useEffect(() => {
-    if (data.status === 'fulfilled' && data.data.length > 0) {
+    if (data.status === FULFILLED && data.data.length > 0) {
       const item = data.data[0];
       if (item.name && item.lat && item.lon) {
         dispatch(addCity({
@@ -26,10 +34,17 @@ function AddBtnModal ({ toggleModal }: { toggleModal: () => void}) {
           lat: item?.lat,
           lon: item?.lon,
         }));
+        const newCities = [...cities, {
+              name: item?.name,
+              lat: item?.lat,
+              lon: item?.lon,
+            } as ICity]
+        setCities(newCities);
+        localStorage.setItem('City', newCities.map((it: ICity) => it.name).join(','));
         toggleModal();
-      }
-    }
-  }, [data.status])
+      };
+    };
+  }, [data.status]);
 
   return (
     <div className={styles.modalWr}>
@@ -49,6 +64,6 @@ function AddBtnModal ({ toggleModal }: { toggleModal: () => void}) {
         </button>
     </div>
   );
-}
+};
 
 export default AddBtnModal;

@@ -5,11 +5,10 @@ export const citySlice = createSlice({
 	initialState: [],
 	reducers: {
 		addCity: (state, action) => {
-			console.log('ACTION:', action);
 			state.push({ ...action.payload });
 		},
 		removeCity: (state, action) => {
-			state = state.filter((item) => item !== action.payload)
+			state = state.filter((item) => item.name !== action.payload)
 		}
 	}
 });
