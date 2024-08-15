@@ -5,6 +5,7 @@ import { useGetInfoByCordQuery } from '../services/weather';
 import { ICON_API_URL, FULFILLED } from '../constants/general';
 import { RAIN, CLOUDS, FOG, CLEAR } from '../constants/weather';
 import ICity from '../interfaces/city';
+import RefreshBtn from './RefreshBtn';
 import styles from '../styles/Card.module.scss';
 
 interface ICardContent {
@@ -44,6 +45,9 @@ function Card ({ item, lat, lon }: ICardContent) {
             <div className={styles.minTemp}>
                 {data.status === FULFILLED && `${Math.round(maxTemperature - 273)}° / ${Math.round(minTemperature - 273)}°`}
             </div>
+        </div>
+        <div className={styles.refresh}>
+            <RefreshBtn />
         </div>
     </div>
   );

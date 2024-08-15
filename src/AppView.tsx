@@ -42,7 +42,7 @@ function AppView() {
         <div className={styles.cardsWrapper}>
           {cities.length > 0 
             ? cities.map((item: ICity) => (
-                <Card cities={cities} setCities={setCities} item={item.name} />
+                <Card key={item.name + Date.now()} cities={cities} setCities={setCities} item={item.name} />
               ))  
             : <div className={styles.empty}>List is empty...</div> }
         </div>      

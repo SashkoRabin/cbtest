@@ -45,7 +45,7 @@
 			.temp {
 				width: 400px;
 				text-align: center;
-				margin-top: 25%;
+				margin-top: 12%;
 
 				.weatherStatus {
 					font-size: 24px;
@@ -91,6 +91,12 @@
 			position: absolute;
 			right: 15px;
 			top: 15px;
+		}
+
+		.refresh {
+			margin-top: 20px;
+			position: absolute;
+			left: 33%;
 		}
 
 		.empty {

@@ -10,8 +10,15 @@ export const weatherApi = createApi({
     }),
     getInfoByCord: builder.query({
       query: ({ lat, lon }: { lat: number, lon: number }) => `/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+    }),
+    getHourlyWeather: builder.query({
+      query: ({ lat, lon }: { lat: number, lon: number }) => `/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`
     })
   }),
 })
 
-export const { useAddCountryQuery, useGetInfoByCordQuery } = weatherApi;
+export const { 
+  useAddCountryQuery, 
+  useGetInfoByCordQuery, 
+  useGetHourlyWeatherQuery 
+} = weatherApi;
