@@ -9,7 +9,6 @@
 		display: flex;
 		background-color: #29bbff;
 		width: 400px;
-		height: 50vh;
 		margin: 20px;
 		position: relative;
 		
@@ -17,6 +16,8 @@
 			color: white;
 			background-position: center;
 			background-size: cover;
+			width: 100%;
+			padding-bottom: 30px;
 			transition: .1s;
 			cursor: pointer;
 
@@ -38,12 +39,12 @@
 
 			.title {
 				display: block;
-				width: 400px;
+				width: 100%;
 				text-align: center;
 			}
 
 			.temp {
-				width: 400px;
+				width: 100%;
 				text-align: center;
 				margin-top: 12%;
 
@@ -95,13 +96,52 @@
 
 		.refresh {
 			margin-top: 20px;
-			position: absolute;
-			left: 33%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 
 		.empty {
 			display: block;
 			text-align: center;
+		}
+	}
+}
+
+@media (max-width: 560px) {
+	.cardsWrapper {
+		.cardWr {
+			width: 96%;
+			margin: 12px;
+
+			.card {
+				.temp {
+					.currentTemp {
+						font-size: 42px;
+
+						&::after {
+							font-size: 32px;
+						}
+					}
+
+					.minTemp {
+						font-size: 16px;
+					}
+				}
+			}
+
+			.refresh {
+				left: 25%;
+			}
+		}
+	}
+}
+
+@media (max-width: 340px) {
+	.cardsWrapper {
+		.cardWr {
+			width: 300px;
+			margin: 4px;
 		}
 	}
 }
