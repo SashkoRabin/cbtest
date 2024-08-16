@@ -17,7 +17,7 @@ function AddBtn ({ cities, setCities }: IAddBtn) {
 
   return (
     <div className={styles.icon}>
-      <PlusIcon onClick={toggleModal} />
+      <PlusIcon onClick={toggleModal} data-testid="plus-icon" />
       {modal && 
         <AddBtnModal 
           toggleModal={toggleModal} 

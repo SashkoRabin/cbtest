@@ -7,7 +7,7 @@ import { addCity } from '../store/citySlice';
 import { useAddCountryQuery } from '../services/weather';
 
 
-interface IAddBtnModal {
+export interface IAddBtnModal {
   toggleModal: () => void;
   cities: ICity[];
   setCities: (value: ICity[]) => void;
@@ -26,7 +26,7 @@ function AddBtnModal ({ toggleModal, cities, setCities }: IAddBtnModal) {
   };
 
   useEffect(() => {
-    if (data.status === FULFILLED && data.data.length > 0) {
+    if (data?.status === FULFILLED && data?.data?.length > 0) {
       const item = data.data[0];
       if (item.name && item.lat && item.lon) {
         dispatch(addCity({
@@ -44,7 +44,7 @@ function AddBtnModal ({ toggleModal, cities, setCities }: IAddBtnModal) {
         toggleModal();
       };
     };
-  }, [data.status]);
+  }, [data?.status]);
 
   return (
     <div className={styles.modalWr}>

@@ -3,3 +3,16 @@ export default interface ICity {
 	lat: number;
 	lon: number;
 };
+
+export interface ICityList {
+  main: {
+    temp: number,
+    temp_max: number,
+    temp_min: number,
+  },
+  weather: [{
+    description: string,
+    main: string,
+    icon: string
+  }]
+}

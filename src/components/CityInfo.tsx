@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { LineChart, Line, XAxis, Tooltip } from 'recharts';
 import { useGetInfoByCordQuery, useGetHourlyWeatherQuery } from '../services/weather';
 import { ICON_API_URL, FULFILLED } from '../constants/general';
@@ -23,9 +23,9 @@ function CityInfo ({ name, lat, lon, toggleCityInfo, cityInfo }: ICityInfo) {
   const data = useGetInfoByCordQuery({ lat, lon });
   const hourlyData = useGetHourlyWeatherQuery({ lat, lon });
   const weatherContainer = data?.data;
-  const temperature: number = weatherContainer?.main.temp || 0;
-  const maxTemperature: number = weatherContainer?.main.temp_max || 0;
-  const minTemperature: number = weatherContainer?.main.temp_min || 0;
+  const temperature: number = weatherContainer?.main?.temp || 0;
+  const maxTemperature: number = weatherContainer?.main?.temp_max || 0;
+  const minTemperature: number = weatherContainer?.main?.temp_min || 0;
   const weatherStatus: string = weatherContainer?.weather[0].description || '';
   const weatherMain: string = weatherContainer?.weather[0].main || '';
   const weatherIcon: string = weatherContainer?.weather[0].icon || '';
@@ -50,7 +50,7 @@ function CityInfo ({ name, lat, lon, toggleCityInfo, cityInfo }: ICityInfo) {
         <div className={styles.temp}>
             <div className={styles.weatherStatus}>
                 {weatherStatus.charAt(0).toUpperCase() + weatherStatus.slice(1)}
-                <img className={styles.weatherIcon} src={`${ICON_API_URL}/img/wn/${weatherIcon}@2x.png`} />
+                <img className={styles.weatherIcon} alt="weather icon" src={`${ICON_API_URL}/img/wn/${weatherIcon}@2x.png`} />
             </div>
             <div className={styles.currentTemp}>
                 {data.status === FULFILLED && `${Math.round(temperature - 273)}`}
@@ -62,7 +62,7 @@ function CityInfo ({ name, lat, lon, toggleCityInfo, cityInfo }: ICityInfo) {
         <p className={styles.forecastTitle}>5 day forecast</p>
         {hourlyList && (
           <div className={styles.graphWr}>
-            <LineChart width={600} height={200} data={hourlyList}>
+            <LineChart role="chart" width={600} height={200} data={hourlyList}>
               <XAxis dataKey="name" />
               <Line type="monotone" dataKey="temp" stroke="#fcc732" />
               <Tooltip />
